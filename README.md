@@ -20,7 +20,7 @@ or
 
 ```html
 <script src="jquery.js"></script>
-<script src="throttle-debonce.js"></script>
+<script src="throttle-debounce.js"></script>
 <script src="pagenav.js"></script>
 <script>
   new Pagenav(element, opts);
