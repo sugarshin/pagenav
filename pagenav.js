@@ -63,7 +63,10 @@
     }
 
     Pagenav.prototype.activate = function(scrollTop) {
-      if ((this.$target.offset().top - this.opts.offset <= scrollTop && scrollTop < this.$target.outerHeight() + this.opts.range)) {
+      var offset, range;
+      offset = this.$target.offset().top - this.opts.offset;
+      range = this.$target.outerHeight() + this.opts.range + offset;
+      if ((offset <= scrollTop && scrollTop < range)) {
         return this.opts.onActivate(this.$el[0]);
       } else {
         return this.opts.onDeactivate(this.$el[0]);

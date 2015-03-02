@@ -44,9 +44,10 @@ do (root = this, factory = ($, td) ->
       @events()
 
     activate: (scrollTop) ->
-      if @$target.offset().top - @opts.offset <=
-      scrollTop <
-      @$target.outerHeight() + @opts.range
+      offset = @$target.offset().top - @opts.offset
+      range = @$target.outerHeight() + @opts.range + offset
+
+      if offset <= scrollTop < range
         @opts.onActivate @$el[0]
       else
         @opts.onDeactivate @$el[0]
