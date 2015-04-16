@@ -1,17 +1,19 @@
+{ jsdom } = require 'jsdom'
+global.document = jsdom '<html><body></body></html>'
+global.window = document.defaultView
+global.navigator = window.navigator
+
 assert = require 'power-assert'
 
-Pagenav = require '../pagenav'
-
-mocha.setup 'bdd'
-window.onload = ->
-  if window.mochaPhantomJS
-    mochaPhantomJS.run()
-  else
-    mocha.run()
-
-
+Pagenav = require '../src/pagenav.coffee'
 
 # .test()
-describe '.test()', ->
-  it 'テストのテスト', ->
-    assert true
+describe 'Pagenav', ->
+  it 'constructor', ->
+    a = document.createElement 'a'
+    div = document.createElement 'div'
+    a.href = '#id'
+    div.id = 'id'
+    document.body.appendChild a
+    document.body.appendChild div
+    assert new Pagenav a
